@@ -1,0 +1,6 @@
+# Use the 'create api' subcommand to add watches to this file.
+- group: installer.krateo.io
+  version: v1alpha1
+  kind: Installer
+  chart: helm-charts/installer
+#+kubebuilder:scaffold:watch

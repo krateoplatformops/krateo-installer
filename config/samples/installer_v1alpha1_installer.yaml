@@ -1,0 +1,155 @@
+apiVersion: installer.krateo.io/v1alpha1
+kind: Installer
+metadata:
+  name: installer-sample
+spec:
+  # Default values copied from <project_dir>/helm-charts/installer/values.yaml
+  affinity: {}
+  autoscaling:
+    enabled: false
+    maxReplicas: 100
+    minReplicas: 1
+    targetCPUUtilizationPercentage: 80
+  env:
+    INSTALLER_DEBUG: "true"
+  fullnameOverride: ""
+  image:
+    pullPolicy: IfNotPresent
+    repository: ghcr.io/krateoplatformops/installer
+    tag: ""
+  imagePullSecrets: []
+  krateoplatformops:
+    authn:
+      KUBECONFIG_SERVER_URL: https://127.0.0.1:6443
+      image:
+        pullPolicy: IfNotPresent
+        repository: ghcr.io/krateoplatformops/authn
+        tag: ""
+    backend:
+      etcd:
+        auth:
+          rbac:
+            create: false
+        global:
+          compatibility:
+            openshift:
+              adaptSecurityContext: auto
+          imageRegistry: ""
+          storageClass: ""
+        image:
+          pullPolicy: IfNotPresent
+          registry: docker.io
+          repository: bitnami/etcd
+          tag: 3.5.14-debian-12-r0
+      image:
+        pullPolicy: IfNotPresent
+        repository: ghcr.io/krateoplatformops/backend
+        tag: ""
+    bff:
+      image:
+        pullPolicy: IfNotPresent
+        repository: ghcr.io/krateoplatformops/bff
+        tag: ""
+    core-provider:
+      image:
+        pullPolicy: IfNotPresent
+        repository: ghcr.io/krateoplatformops/core-provider
+        tag: ""
+    custom:
+      enabled: false
+    eventrouter:
+      enabled: false
+      image:
+        pullPolicy: IfNotPresent
+        repository: ghcr.io/krateoplatformops/eventrouter
+        tag: ""
+    frontend:
+      env:
+        AUTHN_API_BASE_URL: ""
+        BFF_API_BASE_URL: ""
+      image:
+        pullPolicy: IfNotPresent
+        repository: ghcr.io/krateoplatformops/krateo-frontend
+        tag: ""
+      overrideconf: false
+    ingress:
+      authn:
+        annotations: {}
+        className: ""
+        hosts:
+        - host: chart-example.local
+          paths:
+          - path: /
+            pathType: ImplementationSpecific
+        tls: []
+      bff:
+        annotations: {}
+        className: ""
+        hosts:
+        - host: chart-example.local
+          paths:
+          - path: /
+            pathType: ImplementationSpecific
+        tls: []
+      enabled: false
+      frontend:
+        annotations: {}
+        className: ""
+        hosts:
+        - host: chart-example.local
+          paths:
+          - path: /
+            pathType: ImplementationSpecific
+        tls: []
+      vcluster:
+        annotations:
+          nginx.ingress.kubernetes.io/backend-protocol: HTTPS
+          nginx.ingress.kubernetes.io/ssl-passthrough: "true"
+          nginx.ingress.kubernetes.io/ssl-redirect: "true"
+        host: vcluster.local
+        ingressClassName: ""
+        pathType: ImplementationSpecific
+        tls: []
+    init:
+      enabled: true
+    patch-provider:
+      enabled: false
+      image:
+        pullPolicy: IfNotPresent
+        repository: ghcr.io/krateoplatformops/patch-provider
+        tag: ""
+    service:
+      externalIpAvailable: false
+      type: NodePort
+    vcluster:
+      defaultImageRegistry: ""
+      enabled: false
+      openshift:
+        enable: false
+      securityContext:
+        allowPrivilegeEscalation: false
+      storage:
+        className: ""
+      sync:
+        persistentvolumes:
+          enabled: true
+        storageclasses:
+          enabled: true
+  nameOverride: ""
+  nodeSelector: {}
+  podAnnotations: {}
+  podLabels: {}
+  podSecurityContext: {}
+  replicaCount: 1
+  resources: {}
+  securityContext: {}
+  serviceAccount:
+    annotations: {}
+    automount: true
+    create: true
+    name: ""
+  tolerations: []
+  volumeMounts: []
+  volumes: []
+  
+  

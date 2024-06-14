@@ -1,0 +1,31 @@
+# permissions for end users to edit installers.
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRole
+metadata:
+  labels:
+    app.kubernetes.io/name: clusterrole
+    app.kubernetes.io/instance: installer-editor-role
+    app.kubernetes.io/component: rbac
+    app.kubernetes.io/created-by: krateo-installer
+    app.kubernetes.io/part-of: krateo-installer
+    app.kubernetes.io/managed-by: kustomize
+  name: installer-editor-role
+rules:
+- apiGroups:
+  - installer.krateo.io
+  resources:
+  - installers
+  verbs:
+  - create
+  - delete
+  - get
+  - list
+  - patch
+  - update
+  - watch
+- apiGroups:
+  - installer.krateo.io
+  resources:
+  - installers/status
+  verbs:
+  - get

@@ -1,0 +1,43 @@
+apiVersion: operators.coreos.com/v1alpha1
+kind: ClusterServiceVersion
+metadata:
+  annotations:
+    alm-examples: '[]'
+    capabilities: Basic Install
+  name: krateo-installer.v0.0.0
+  namespace: placeholder
+spec:
+  apiservicedefinitions: {}
+  customresourcedefinitions: {}
+  description: Install Krateo PlatformOps.
+  displayName: Krateo Installer
+  icon:
+  - base64data: ""
+    mediatype: ""
+  install:
+    spec:
+      deployments: null
+    strategy: ""
+  installModes:
+  - supported: false
+    type: OwnNamespace
+  - supported: false
+    type: SingleNamespace
+  - supported: false
+    type: MultiNamespace
+  - supported: true
+    type: AllNamespaces
+  keywords:
+  - Krateo
+  - Installer
+  - PlatformOps
+  links:
+  - name: Krateo Installer
+    url: https://krateo-installer.domain
+  maintainers:
+  - email: matteo.gastaldellomiotto@gmail.com
+    name: matteogastaldello
+  maturity: alpha
+  provider:
+    name: krateo-installer
+  version: 0.0.0

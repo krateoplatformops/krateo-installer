@@ -1,0 +1,6 @@
+apiVersion: v2
+appVersion: 0.5.3
+description: Krateo PlatformOps Installer
+name: installer
+type: application
+version: 0.3.1
